@@ -2,8 +2,8 @@
 <html lang="ru" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuken Academy | Обучение веб-разработке</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AnukennWell | Обучение веб-разработке и бизнесу</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,212 +16,369 @@
                 extend: {
                     fontFamily: { sans: ['Outfit', 'sans-serif'], tech: ['Space Grotesk', 'sans-serif'] },
                     colors: { 
-                        dark: '#050505', 
-                        accent: '#8b5cf6', // Фиолетовый неон
-                        secondary: '#2dd4bf' // Тиловый (Teal) акцент
+                        dark: '#02040a', 
+                        accent: '#6366f1', // Indigo Neon
+                        secondary: '#14b8a6', // Teal
+                        gold: '#fbbf24'
                     },
-                    animation: { 'float': 'float 6s ease-in-out infinite' },
-                    keyframes: {
-                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } }
-                    }
+                    animation: { 'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' }
                 }
             }
         }
     </script>
 
     <style>
-        body { background-color: #050505; color: #e2e8f0; }
-        
-        /* Шум на фоне */
+        /* --- ИСПРАВЛЕНИЕ ПУСТОГО ПРОСТРАНСТВА СПРАВА --- */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden !important;
+            background-color: #02040a;
+            color: #e2e8f0;
+        }
+
+        /* Шум (Grain) */
         .noise-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.05; pointer-events: none; z-index: 50;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.07; pointer-events: none; z-index: 50;
         }
 
         /* Стекло */
         .glass {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .glass:hover {
-            border-color: rgba(139, 92, 246, 0.5);
-            background: rgba(255, 255, 255, 0.05);
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
         }
 
-        /* Светящийся текст */
-        .glow-text {
-            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        /* Акцентный текст */
+        .text-glow {
+            text-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
         }
     </style>
 </head>
-<body class="relative overflow-x-hidden">
+<body class="relative">
 
     <div class="noise-overlay"></div>
-
-    <div class="fixed inset-0 pointer-events-none z-0">
-        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-teal-900/20 rounded-full blur-[120px]"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-indigo-900/20 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-teal-900/20 rounded-full blur-[120px] animate-pulse-slow"></div>
     </div>
 
     <header class="fixed top-0 w-full z-40 glass border-b border-white/5">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="font-tech text-2xl font-bold tracking-tighter text-white">
-                ANUKEN<span class="text-accent">.EDU</span>
+        <div class="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <a href="#" class="font-tech text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+                <i class="fas fa-layer-group text-accent"></i>
+                ANUKENN<span class="text-white/50">WELL</span>
             </a>
-            <a href="https://wa.me/77074534518" class="bg-accent/10 text-accent border border-accent/20 px-6 py-2 rounded-full font-bold hover:bg-accent hover:text-white transition text-sm">
-                Записаться
+            <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
+                <a href="#benefits" class="hover:text-white transition">Что вы получите</a>
+                <a href="#program" class="hover:text-white transition">Программа</a>
+                <a href="#price" class="hover:text-white transition">Тарифы</a>
+            </nav>
+            <a href="https://wa.me/77074534518" class="bg-white text-dark px-5 py-2 rounded-full font-bold hover:bg-slate-200 transition text-xs md:text-sm">
+                Связаться
             </a>
         </div>
     </header>
-        <section class="relative z-10 pt-32 pb-20 px-6 min-h-screen flex items-center">
-        <div class="container mx-auto text-center">
-            <div class="inline-block px-4 py-1 rounded-full border border-teal-500/30 bg-teal-500/10 text-teal-400 text-xs font-bold mb-6 tracking-widest uppercase" data-aos="fade-down">
-                Старт потока: Скоро
+        <section class="relative z-10 pt-32 pb-16 px-4 md:px-6 min-h-screen flex items-center justify-center">
+        <div class="container mx-auto text-center max-w-4xl">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent text-xs font-bold mb-8 tracking-widest uppercase animate-fade-in-up">
+                <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                Web Development 2.0
             </div>
             
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 font-tech leading-tight" data-aos="zoom-in">
-                Создавай Сайты.<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 glow-text">Зарабатывай на AI.</span>
+            <h1 class="text-4xl md:text-7xl font-black mb-6 font-tech leading-[1.1] tracking-tight" data-aos="zoom-in">
+                Зарабатывай на сайтах,<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-glow">используя мощь AI.</span>
             </h1>
             
             <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                Авторский курс Anuken. Научу делать дорогие сайты без сложного кода, используя современные нейросети. От нуля до первого заказа за 2 недели.
+                Полный курс от Anuken. Как создавать дорогие сайты без сложного программирования, настраивать рекламу и подключить удобную Админку для клиента.
             </p>
 
-            <div class="flex flex-col md:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
-                <a href="#program" class="bg-white text-dark px-8 py-4 rounded-xl font-bold hover:bg-slate-200 transition">Программа курса</a>
-                <a href="#price" class="glass text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition">Стоимость</a>
-            </div>
-
-            <div class="mt-16 flex justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition duration-500" data-aos="fade-up" data-aos-delay="300">
-                <i class="fab fa-html5 text-4xl hover:text-orange-500 transition"></i>
-                <i class="fab fa-css3-alt text-4xl hover:text-blue-500 transition"></i>
-                <i class="fas fa-robot text-4xl hover:text-purple-500 transition"></i>
-                <i class="fas fa-dollar-sign text-4xl hover:text-green-500 transition"></i>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="fade-up" data-aos-delay="200">
+                <a href="#price" class="w-full sm:w-auto bg-accent hover:bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold transition shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2">
+                    Выбрать тариф <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#program" class="w-full sm:w-auto glass text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition">
+                    Смотреть программу
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="py-20 relative z-10">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 font-tech">Для кого этот курс?</h2>
+    <section id="benefits" class="py-20 relative z-10">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold font-tech mb-4">Арсенал Разработчика</h2>
+                <p class="text-slate-400">Мы не просто "учим кодить". Мы даем инструменты для заработка.</p>
+            </div>
             
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up">
-                    <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center text-accent text-2xl mb-4"><i class="fas fa-user-graduate"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Новички</h3>
-                    <p class="text-slate-400 text-sm">Кто никогда не писал код, но хочет войти в IT и начать зарабатывать удаленно.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass glass-card p-8 rounded-2xl" data-aos="fade-up">
+                    <i class="fas fa-robot text-4xl text-purple-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">AI-Кодинг</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Забудь про зубрежку тегов. Ты научишься управлять нейросетями (Gemini, GPT), которые будут писать 90% кода за тебя. Скорость разработки x10.
+                    </p>
                 </div>
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center text-secondary text-2xl mb-4"><i class="fas fa-briefcase"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Фрилансеры</h3>
-                    <p class="text-slate-400 text-sm">Кто хочет делать сайты быстрее с помощью AI и повысить чек за свои услуги.</p>
+                <div class="glass glass-card p-8 rounded-2xl border-accent/30" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-cogs text-4xl text-secondary mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Админ-Панель</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Главная боль клиентов — "как менять текст?". Ты научишься прикручивать удобную админку, чтобы клиент сам менял цены и фото с телефона.
+                    </p>
                 </div>
-                <div class="glass p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center text-pink-400 text-2xl mb-4"><i class="fas fa-store"></i></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Предприниматели</h3>
-                    <p class="text-slate-400 text-sm">Кто хочет запускать свои проекты и лендинги без затрат на дорогих студий.</p>
+                <div class="glass glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fab fa-google text-4xl text-red-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Google Ads (Бонус)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Сайт без рекламы — деньги на ветер. Я дам готовый алгоритм настройки контекстной рекламы, чтобы ты продавал клиентам услугу "под ключ".
+                    </p>
                 </div>
-            </div>
-        </div>
-    </section>
-      <section id="program" class="py-20 bg-white/5 relative z-10">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 font-tech">Программа обучения</h2>
-
-            <div class="space-y-6">
-                <div class="glass p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-start group" data-aos="fade-left">
-                    <div class="text-5xl font-black text-white/10 group-hover:text-accent/20 transition font-tech">01</div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-2">Основы Веба (Без воды)</h3>
-                        <p class="text-slate-400 text-sm mb-3">Разберем структуру сайта. Что такое HTML, CSS, Домен и Хостинг. Установка инструментов.</p>
-                        <span class="text-xs bg-white/10 px-2 py-1 rounded text-white">Результат: Твой первый код</span>
-                    </div>
+                <div class="glass glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-mobile-alt text-4xl text-blue-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Адаптивность</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Твои сайты будут идеально работать на iPhone, Samsung и ПК. Никаких "кривых" блоков и горизонтального скролла.
+                    </p>
                 </div>
-
-                <div class="glass p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-start group" data-aos="fade-left" data-aos-delay="100">
-                    <div class="text-5xl font-black text-white/10 group-hover:text-accent/20 transition font-tech">02</div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-2">Магия Нейросетей (AI)</h3>
-                        <p class="text-slate-400 text-sm mb-3">Как использовать Gemini и ChatGPT, чтобы они писали код за тебя. Промпт-инжиниринг для верстки.</p>
-                        <span class="text-xs bg-white/10 px-2 py-1 rounded text-white">Результат: Сайт за 1 час</span>
-                    </div>
+                <div class="glass glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-file-contract text-4xl text-yellow-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Пакет документов</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Дам шаблоны договоров, брифов и актов. Ты будешь выглядеть как профи, а не как новичок-фрилансер.
+                    </p>
                 </div>
-
-                <div class="glass p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-start group" data-aos="fade-left" data-aos-delay="200">
-                    <div class="text-5xl font-black text-white/10 group-hover:text-accent/20 transition font-tech">03</div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-2">Красивый Дизайн (UI/UX)</h3>
-                        <p class="text-slate-400 text-sm mb-3">Где брать картинки, как подбирать шрифты и цвета. Анимации, которые продают (AOS, CSS).</p>
-                        <span class="text-xs bg-white/10 px-2 py-1 rounded text-white">Результат: Стильное портфолио</span>
-                    </div>
-                </div>
-
-                <div class="glass p-6 rounded-2xl flex flex-col md:flex-row gap-6 items-start group" data-aos="fade-left" data-aos-delay="300">
-                    <div class="text-5xl font-black text-white/10 group-hover:text-accent/20 transition font-tech">04</div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-2">Заработок и Клиенты</h3>
-                        <p class="text-slate-400 text-sm mb-3">Как найти первого клиента? Как продать сайт за 50k - 100k? Настройка рекламы Google (Бонус).</p>
-                        <span class="text-xs bg-white/10 px-2 py-1 rounded text-white">Результат: Первые деньги</span>
-                    </div>
+                <div class="glass glass-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-folder-open text-4xl text-pink-400 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Готовые шаблоны</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Подарю коды моих проектов (Спецтехника, Ремонт, Кофейня). Просто меняй картинки и продавай.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
+        <section class="py-20 bg-white/5 relative z-10">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-5xl font-bold font-tech mb-6">Кому это подойдет?</h2>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center text-indigo-400 shrink-0"><i class="fas fa-user"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Полным новичкам</h4>
+                                <p class="text-slate-400 text-sm">Кто никогда не открывал код. Объясняю на пальцах, без заумных терминов. Твой старт в IT.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-teal-500/20 rounded-full flex items-center justify-center text-teal-400 shrink-0"><i class="fas fa-laptop-code"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Действующим фрилансерам</h4>
+                                <p class="text-slate-400 text-sm">Устали кодить вручную? Покажу, как делать лендинги за 2 часа с помощью AI и продавать их дороже.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 shrink-0"><i class="fas fa-chart-line"></i></div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Предпринимателям</h4>
+                                <p class="text-slate-400 text-sm">Перестаньте платить студиям. Запустите сайт для своего бизнеса сами и контролируйте рекламу.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-accent to-purple-600 blur-[80px] opacity-30"></div>
+                    <div class="glass p-8 rounded-2xl relative border-l-4 border-accent">
+                        <p class="text-xl italic text-slate-200">"Я создал этот курс, чтобы передать свой опыт. Не теорию из учебников, а реальные методы, которыми я зарабатываю каждый день."</p>
+                        <div class="mt-6 flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-700 rounded-full overflow-hidden">
+                                <i class="fas fa-user text-3xl text-gray-400 mt-2 ml-2"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Anuken</div>
+                                <div class="text-xs text-accent">Основатель Academy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="price" class="py-20 relative z-10">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 font-tech">Стоимость</h2>
+    <section id="program" class="py-20 relative z-10">
+        <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-tech">Программа курса</h2>
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="glass p-8 rounded-3xl border-t-4 border-slate-500 flex flex-col relative overflow-hidden" data-aos="zoom-in">
-                    <h3 class="text-2xl font-bold text-white mb-2">База</h3>
-                    <p class="text-slate-400 text-sm mb-6">Для самостоятельных</p>
+            <div class="space-y-4">
+                <details class="glass p-6 rounded-2xl group cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-lg list-none">
+                        <span><span class="text-accent mr-3">01.</span> Быстрый старт и Основы</span>
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                    </summary>
+                    <div class="mt-4 text-slate-400 text-sm pl-8 border-l border-white/10">
+                        <ul class="list-disc space-y-2 pl-4">
+                            <li>Как работает интернет (Домен, Хостинг, Сервер)</li>
+                            <li>Установка VS Code и нужных плагинов</li>
+                            <li>Структура HTML и стили CSS (База, без воды)</li>
+                            <li>Разбор Tailwind CSS — верстка со скоростью света</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="glass p-6 rounded-2xl group cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-lg list-none">
+                        <span><span class="text-accent mr-3">02.</span> Работа с Нейросетями (AI)</span>
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                    </summary>
+                    <div class="mt-4 text-slate-400 text-sm pl-8 border-l border-white/10">
+                        <ul class="list-disc space-y-2 pl-4">
+                            <li>Как правильно ставить задачи ChatGPT и Gemini</li>
+                            <li>Генерация кода целыми блоками</li>
+                            <li>Исправление ошибок с помощью AI</li>
+                            <li>Как создать структуру сайта за 5 минут</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="glass p-6 rounded-2xl group cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-lg list-none">
+                        <span><span class="text-accent mr-3">03.</span> Визуал и "Дорогой" Дизайн</span>
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                    </summary>
+                    <div class="mt-4 text-slate-400 text-sm pl-8 border-l border-white/10">
+                        <ul class="list-disc space-y-2 pl-4">
+                            <li>Стиль Glassmorphism (Стекло) и Dark Mode</li>
+                            <li>Анимации появления (AOS) и плавный скролл</li>
+                            <li>Где брать качественные фото и иконки бесплатно</li>
+                            <li>Адаптация под мобильные устройства (чтобы не было багов)</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="glass p-6 rounded-2xl group cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-white text-lg list-none">
+                        <span><span class="text-secondary mr-3">04.</span> Функционал: Админка и Заявки</span>
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                    </summary>
+                    <div class="mt-4 text-slate-400 text-sm pl-8 border-l border-white/10">
+                        <ul class="list-disc space-y-2 pl-4">
+                            <li>Настройка форм: заявки падают в WhatsApp/Telegram</li>
+                            <li>Подключение простой Админ-панели (чтобы клиент менял текст)</li>
+                            <li>Загрузка сайта на хостинг (Vercel/GitHub)</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="glass p-6 rounded-2xl group cursor-pointer border-accent/30">
+                    <summary class="flex justify-between items-center font-bold text-white text-lg list-none">
+                        <span><span class="text-gold mr-3">05.</span> Деньги: Реклама и Клиенты</span>
+                        <i class="fas fa-chevron-down group-open:rotate-180 transition"></i>
+                    </summary>
+                    <div class="mt-4 text-slate-400 text-sm pl-8 border-l border-white/10">
+                        <ul class="list-disc space-y-2 pl-4">
+                            <li>Настройка Google Ads (Поиск, Ключевые слова)</li>
+                            <li>Как искать клиентов: фриланс-биржи, холодные рассылки</li>
+                            <li>Скрипты общения: как продать сайт за 100 000+ тг</li>
+                            <li>Юридическая часть: Договоры и оплата</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+        <section id="price" class="py-20 relative z-10">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 font-tech">Инвестируй в себя</h2>
+
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                
+                <div class="glass p-8 rounded-3xl flex flex-col relative overflow-hidden group hover:bg-white/5 transition" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-white mb-2">Self</h3>
+                    <p class="text-slate-400 text-xs mb-6 uppercase tracking-wider">Для самостоятельных</p>
                     <div class="text-4xl font-black text-white mb-6">30 000 ₸</div>
                     
                     <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-300">
-                        <li class="flex gap-3"><i class="fas fa-check text-green-500"></i> Доступ ко всем урокам</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-green-500"></i> Готовые шаблоны кода</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-green-500"></i> Доступ в закрытый чат</li>
-                        <li class="flex gap-3 text-slate-600"><i class="fas fa-times"></i> Личная проверка ДЗ</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-green-500"></i> Все видеоуроки (5 модулей)</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-green-500"></i> Доступ навсегда</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-green-500"></i> Базовые шаблоны кода</li>
+                        <li class="flex gap-3 text-slate-600"><i class="fas fa-times"></i> Настройка Google Ads</li>
+                        <li class="flex gap-3 text-slate-600"><i class="fas fa-times"></i> Админ-панель</li>
+                        <li class="flex gap-3 text-slate-600"><i class="fas fa-times"></i> Поддержка куратора</li>
                     </ul>
-                    <a href="https://wa.me/77074534518?text=Хочу купить тариф База" class="block w-full py-4 rounded-xl border border-white/20 text-center font-bold hover:bg-white hover:text-black transition">Купить Базу</a>
+                    <a href="https://wa.me/77074534518?text=Хочу тариф Self за 30000" class="block w-full py-4 rounded-xl border border-white/20 text-center font-bold hover:bg-white hover:text-black transition">Выбрать Self</a>
                 </div>
 
-                <div class="glass p-8 rounded-3xl border-t-4 border-accent bg-gradient-to-b from-accent/10 to-transparent flex flex-col relative overflow-hidden transform md:-translate-y-4 shadow-2xl shadow-accent/20" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="absolute top-4 right-4 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">ХИТ</div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Менторство</h3>
-                    <p class="text-slate-400 text-sm mb-6">Работаем до результата</p>
-                    <div class="text-4xl font-black text-white mb-6">80 000 ₸</div>
+                <div class="glass p-8 rounded-3xl border-2 border-accent bg-gradient-to-b from-accent/20 to-dark flex flex-col relative overflow-hidden transform md:-translate-y-4 shadow-2xl shadow-accent/20" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 inset-x-0 h-1 bg-accent shadow-[0_0_20px_#6366f1]"></div>
+                    <div class="absolute top-4 right-4 bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">Рекомендую</div>
+                    
+                    <h3 class="text-3xl font-bold text-white mb-2">Business</h3>
+                    <p class="text-indigo-200 text-xs mb-6 uppercase tracking-wider">Полный комплект</p>
+                    <div class="text-5xl font-black text-white mb-6">60 000 ₸</div>
+                    
+                    <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-200">
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-accent"></i> <b>Все уроки + Обновления</b></li>
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-accent"></i> <b>Бонус: Настройка Google Ads</b></li>
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-accent"></i> <b>Урок по Админ-панели</b></li>
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-accent"></i> Пакет документов (Договоры)</li>
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-accent"></i> Доступ в закрытый чат</li>
+                        <li class="flex gap-3"><i class="fas fa-check-circle text-accent"></i> Проверка домашних заданий</li>
+                    </ul>
+                    <a href="https://wa.me/77074534518?text=Хочу тариф Business за 60000" class="block w-full py-4 rounded-xl bg-accent text-white text-center font-bold hover:bg-indigo-600 transition shadow-lg shadow-indigo-500/50">Купить Business</a>
+                </div>
+
+                <div class="glass p-8 rounded-3xl border border-gold/30 flex flex-col relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-bold text-white mb-2">Mentor</h3>
+                    <p class="text-gold text-xs mb-6 uppercase tracking-wider">Личное наставничество</p>
+                    <div class="text-4xl font-black text-white mb-6">120 000 ₸</div>
                     
                     <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-300">
-                        <li class="flex gap-3"><i class="fas fa-check text-accent"></i> Всё, что в тарифе База</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-accent"></i> Личные созвоны с Anuken</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-accent"></i> Разбор твоих проектов</li>
-                        <li class="flex gap-3"><i class="fas fa-check text-accent"></i> Помощь с первым клиентом</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-gold"></i> Всё, что в Business</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-gold"></i> Личные созвоны в Zoom</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-gold"></i> Совместный поиск 1-го клиента</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-gold"></i> Полный разбор ваших проектов</li>
+                        <li class="flex gap-3"><i class="fas fa-check text-gold"></i> Мой личный номер WhatsApp</li>
                     </ul>
-                    <a href="https://wa.me/77074534518?text=Хочу купить тариф Менторство" class="block w-full py-4 rounded-xl bg-accent text-white text-center font-bold hover:bg-violet-600 transition shadow-lg shadow-accent/40">Стать Профи</a>
+                    <a href="https://wa.me/77074534518?text=Хочу тариф Mentor за 120000" class="block w-full py-4 rounded-xl border border-gold/50 text-gold text-center font-bold hover:bg-gold hover:text-black transition">Хочу Наставника</a>
                 </div>
+
             </div>
         </div>
     </section>
-      <footer class="py-10 border-t border-white/5 text-center text-slate-500 text-sm relative z-10">
-        <p>&copy; 2026 Anuken Academy. Обучение современной разработке.</p>
-        <div class="flex justify-center gap-6 mt-4">
-            <a href="https://instagram.com" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
-            <a href="https://t.me/Anukenn" class="hover:text-white transition"><i class="fab fa-telegram text-xl"></i></a>
-            <a href="https://wa.me/77074534518" class="hover:text-white transition"><i class="fab fa-whatsapp text-xl"></i></a>
+
+    <footer class="py-12 border-t border-white/5 bg-dark relative z-10">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-6">ANUKENN<span class="text-white/50">WELL</span></h2>
+            
+            <div class="flex justify-center gap-8 mb-8">
+                <a href="https://t.me/Anukenn" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500 hover:text-white transition"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://wa.me/77074534518" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-green-500 hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-pink-500 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <p class="text-slate-500 text-sm">&copy; 2026 AnukennWell Academy. Все права защищены.</p>
+            <p class="text-slate-600 text-xs mt-2">Разработка сайтов и обучение.</p>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({
+            once: true,
+            duration: 800,
+            offset: 50
+        });
     </script>
 </body>
 </html>
 
-  
-    
